@@ -199,13 +199,14 @@ export class MainPanel extends Component {
                 />
 
                 <div style={{
-                    width: '100%',
+                    width: '20%',
                     height: '450px',
                     border: '.2rem solid #ececec',
                     borderRadius: '4px',
                     padding: '1rem',
                     marginBottom: '1rem',
-                    overflowY: 'auto'
+                    overflowY: 'auto',
+                    float: 'right'
                 }}>
                     {this.renderMessageSkeleton(messageLoading)}
                     {searchTerm
