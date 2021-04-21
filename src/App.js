@@ -16,6 +16,7 @@ import {
   clearUser
 } from './redux/actions/user_action';
 
+
 function App(props) {
   let history = useHistory();
   const dispatch = useDispatch();

@@ -7,6 +7,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import firebase from "../../../firebase";
 import { useSelector } from 'react-redux';
 import mime from "mime-types";
+import ReactPlayer from 'react-player';
 
 function MessageForm() {
     const [content, setContent] = useState("")
@@ -148,6 +149,7 @@ function MessageForm() {
 
     return (
         <div>
+            <ReactPlayer controls url='https://firebasestorage.googleapis.com/v0/b/react-firebase-chat-app-3b8de.appspot.com/o/video%2FTrafic%20-%2053902.mp4?alt=media&token=94e563a2-f3ba-4aad-b91f-61d14c2c2a63' />
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Control
@@ -157,9 +159,10 @@ function MessageForm() {
                         as="textarea"
                         rows={3}
                     />
+                    
                 </Form.Group>
             </Form>
-
+            
             {!(percentage === 0 || percentage === 100) &&
                 <ProgressBar
                     variant="warning"
