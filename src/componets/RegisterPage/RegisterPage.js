@@ -24,13 +24,15 @@ function RegisterPage() {
 
             await createdUser.user.updateProfile({
                 displayName: data.name,
-                photoURL: `http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`
+                photoURL: `http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`,
+                displayEmail: data.email
             })
 
             //Firebase 데이터베이스에 저장해주기 
             await firebase.database().ref("users").child(createdUser.user.uid).set({
                 name: createdUser.user.displayName,
-                image: createdUser.user.photoURL
+                image: createdUser.user.photoURL,
+                email: createdUser.user.displayEmail
             })
 
             setLoading(false)
