@@ -156,6 +156,7 @@ export class MainPanel extends Component {
                 message.user.name.match(regex)
             ) {
                 acc.push(message);
+                
             }
             return acc;
         }, []);

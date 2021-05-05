@@ -3,6 +3,7 @@ import Media from 'react-bootstrap/Media';
 import moment from 'moment';
 
 function Message({ message, user }) {
+    
 
     const timeFromNow = timestamp => moment(timestamp).fromNow();
 
@@ -16,6 +17,9 @@ function Message({ message, user }) {
     }
 
     return (
+        
+      
+        
         <Media style={{ marginBottom: '3px' }}>
             <img
                 style={{ borderRadius: '10px' }}
@@ -25,9 +29,11 @@ function Message({ message, user }) {
                 src={message.user.image}
                 alt={message.user.name}
             />
+            
             <Media.Body style={{
                 backgroundColor: isMessageMine(message, user) && "#ECECEC"
             }}>
+                
                 <h6>{message.user.name}{" "}
                     <span style={{ fontSize: '10px', color: 'gray' }}>
                         {timeFromNow(message.timestamp)}
@@ -36,10 +42,14 @@ function Message({ message, user }) {
                 {isImage(message) ?
                     <img style={{ maxWidth: '300px' }} alt="이미지" src={message.image} />
                     :
+                    
                     <p>
+                        
                         {message.content}
+                    
                     </p>
                 }
+
             </Media.Body>
         </Media>
     )

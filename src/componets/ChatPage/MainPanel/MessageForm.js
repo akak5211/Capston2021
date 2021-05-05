@@ -75,7 +75,15 @@ function MessageForm() {
         if (!content) {
             setErrors(prev => prev.concat("Type contents first"))
             return;
+
         }
+
+        else if (content.includes("#")) {
+    
+             <a href="http://hianna.tistory.com" target="_blank">블로그</a>
+
+        }
+
         setLoading(true);
 
         try {
@@ -159,10 +167,10 @@ function MessageForm() {
                         as="textarea"
                         rows={3}
                     />
-                    
+
                 </Form.Group>
             </Form>
-            
+
             {!(percentage === 0 || percentage === 100) &&
                 <ProgressBar
                     variant="warning"
