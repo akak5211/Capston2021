@@ -245,7 +245,7 @@ export class ChatRooms extends Component {
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control
                                     onChange={(e) => this.setState({ name: e.target.value })}
-                                    type="text"
+                                    type="text" 
                                     placeholder="Enter chat room name"
                                 />
                             </Form.Group>

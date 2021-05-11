@@ -78,12 +78,6 @@ function MessageForm() {
 
         }
 
-        else if (content.includes("#")) {
-    
-             <a href="http://hianna.tistory.com" target="_blank">블로그</a>
-
-        }
-
         setLoading(true);
 
         try {
