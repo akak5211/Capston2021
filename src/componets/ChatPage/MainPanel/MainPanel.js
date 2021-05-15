@@ -9,7 +9,7 @@ import Skeleton from '../../../commons/components/Skeleton';
 import ReactPlayer from 'react-player';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-///
+///ㅇㅇ
 export class MainPanel extends Component {
 
     messagesEnd = React.createRef();
