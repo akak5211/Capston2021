@@ -1,7 +1,8 @@
 import {
     SET_USER,
     CLEAR_USER,
-    SET_PHOTO_URL
+    SET_PHOTO_URL,
+    SET_DVD_URL
 } from './types';
 
 export function setUser(user) {
@@ -23,6 +24,8 @@ export function setPhotoURL(photoURL) {
         type: SET_PHOTO_URL,
         payload: photoURL
     }
+
+
 }
 
 
