@@ -122,8 +122,10 @@ code {
   border-radius: 4px;
 }
 
-
-
+.textarea-sizing{
+  width: 95%;
+  margin-top: 1rem;
+  }
 
 /* Skeleton.js */
 .skeleton {

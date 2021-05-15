@@ -8,11 +8,11 @@ function SidePanel() {
     return (
         <div
             style={{
-                backgroundColor: "#7B83EB",
-                padding: '2rem',
-                minHeight: '100vh',
+                backgroundColor: "black",
+                padding: '0.1rem',
+                minHeight: '100%',
                 color: 'white',
-                minWidth: '275px'
+                minWidth: '10%'
             }}
         >
             <UserPanel />

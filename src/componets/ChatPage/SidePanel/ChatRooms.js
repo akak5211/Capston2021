@@ -216,10 +216,11 @@ export class ChatRooms extends Component {
             <>
 
                 <div style={{
-                    position: 'relative', width: '100%',
-                    display: 'flex', alignItems: 'center'
+                    position: 'relative',
+                    display: 'flex', alignItems: 'center',
+                    fontSize: '0.8rem', marginLeft: 3
                 }}>
-                    <FaRegSmileWink style={{ marginRight: 3 }} />
+                    <FaRegSmileWink style={{ marginRight: 3 , fontSize: '0.8rem'}} />
                     CHAT ROOMS{" "} ({chatRooms.length})
 
                         <FaPlus
@@ -231,7 +232,7 @@ export class ChatRooms extends Component {
                     />
                 </div>
 
-                <ul style={{ listStyleType: 'none', padding: '0' }}>
+                <ul style={{ listStyleType: 'none', padding: '0', fontSize:'.8rem', marginTop:4, marginLeft:4 }}>
                     {this.renderChatrooms(chatRooms)}
                 </ul>
 

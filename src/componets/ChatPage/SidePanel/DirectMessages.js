@@ -122,7 +122,8 @@ export class DirectMessages extends Component {
                         height: '10px',
                         width: '10px',
                         float: 'right',
-                        marginTop: '8px'
+                        marginTop: '8px',
+                        borderRadius: 10
                     }}
                 >
                     {" "}
@@ -134,11 +135,11 @@ export class DirectMessages extends Component {
         const { users } = this.state;
         return (
             <div>
-                <span style={{ display: 'flex', alignItems: 'center' }}>
-                    <FaRegSmile style={{ marginRight: 3 }} />  DIRECT MESSAGES({users.length})
+                <span style={{ display: 'flex', alignItems: 'center', fontSize:'0.8rem' }}>
+                    <FaRegSmile style={{ marginRight: 3, fontSize: '0.8rem', marginLeft: 3}} />  DIRECT MESSAGES ({users.length})
                 </span>
 
-                <ul style={{ listStyleType: 'none', padding: 0 }}>
+                <ul style={{ listStyleType: 'none', padding: 0, fontSize:'0.8rem', marginLeft: 3, marginTop: 3}}>
                     {this.renderDirectMessages(users)}
                 </ul>
             </div>

@@ -12,12 +12,12 @@ function ChatPage() {
 
         <div style={{ display: 'flex' }}>
 
-            <div style={{ width: '300px' }}>
+            <div style={{ width: '13%' }}>
                 <SidePanel
                     key={currentUser && currentUser.uid}
                 />
             </div>
-            <div style={{ width: '100%' }}>
+            <div style={{ width: '95%' }}>
                 <MainPanel
                     key={currentChatRoom && currentChatRoom.id}
                 />

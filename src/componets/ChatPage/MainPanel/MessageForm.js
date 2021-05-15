@@ -7,7 +7,6 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import firebase from "../../../firebase";
 import { useSelector } from 'react-redux';
 import mime from "mime-types";
-import ReactPlayer from 'react-player';
 
 function MessageForm() {
     const [content, setContent] = useState("")
@@ -151,7 +150,7 @@ function MessageForm() {
 
     return (
         <div>
-            <ReactPlayer controls url='https://firebasestorage.googleapis.com/v0/b/react-firebase-chat-app-3b8de.appspot.com/o/Vincenzo(%EB%B9%88%EC%84%BC%EC%A1%B0)%2Fepisoad1(1%ED%99%94)%2Fdvd%2F%EB%B9%88%EC%84%BC%EC%A1%B01%ED%99%94.mp4?alt=media&token=60a61b1b-b849-4e7b-b546-6b9f56706e59' />
+            <div className = "textarea-sizing">
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Control
@@ -161,9 +160,9 @@ function MessageForm() {
                         as="textarea"
                         rows={3}
                     />
-
                 </Form.Group>
             </Form>
+            </div>
 
             {!(percentage === 0 || percentage === 100) &&
                 <ProgressBar
@@ -171,7 +170,6 @@ function MessageForm() {
                     label={`${percentage}%`}
                     now={percentage} />
             }
-
             <br />
             <div>
                 {errors.map(errorMsg => <p style={{ color: 'red' }} key={errorMsg}>{errorMsg}</p>)}
@@ -181,7 +179,7 @@ function MessageForm() {
                 <Col>
                     <button onClick={handleSubmit}
                         type="submit"
-                        style={{ width: '100%' }}
+                        style={{ width: '70%', marginLeft:'3rem' }}
                         disabled={loading ? true : false}
                     >
                         SEND
@@ -190,7 +188,7 @@ function MessageForm() {
                 <Col>
                     <button onClick={handleOpenImageRef}
                         type="submit"
-                        style={{ width: '100%' }}
+                        style={{ width: '70%', marginLeft:'3rem' }}
                         disabled={loading ? true : false}
                     >
                         UPLOAD
@@ -211,4 +209,3 @@ function MessageForm() {
 }
 
 export default MessageForm
-

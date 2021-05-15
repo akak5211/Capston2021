@@ -6,6 +6,10 @@ import firebase from "../../../firebase";
 import { connect } from "react-redux";
 import { setUserPosts } from '../../../redux/actions/chatRoom_action';
 import Skeleton from '../../../commons/components/Skeleton';
+import ReactPlayer from 'react-player';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 export class MainPanel extends Component {
 
     messagesEnd = React.createRef();
@@ -190,39 +194,44 @@ export class MainPanel extends Component {
             </>
         )
 
-    render() {
-        const { messages, searchTerm, searchResults, typingUsers, messageLoading } = this.state;
-        return (
-            <div style={{ padding: '2rem 2rem 0 2rem' }}>
-                <MessageHeader
-                    messages={messages}
-                    handleSearchChange={this.handleSearchChange}
-                />
-
-                <div style={{
-                    width: '20%',
-                    height: '450px',
-                    border: '.2rem solid #ececec',
-                    borderRadius: '4px',
-                    padding: '1rem',
-                    marginBottom: '1rem',
-                    overflowY: 'auto',
-                    float: 'right'
-                }}>
-                    {this.renderMessageSkeleton(messageLoading)}
-                    {searchTerm
-                        ? this.renderMessages(searchResults)
-                        : this.renderMessages(messages)}
-                    {this.renderTypingUsers(typingUsers)}
-                    <div ref={node => (this.messagesEnd = node)} />
+        render() {
+            const { messages, searchTerm, searchResults, typingUsers, messageLoading } = this.state;
+    
+            return (
+                
+                <div style={{ padding: '0.8rem 0.8rem 0 1rem', fontSize:'.5rem'}}>
+                    
+                    <MessageHeader
+                        messages={messages}
+                        handleSearchChange={this.handleSearchChange}
+                    />
+    
+                <Row>
+                    <Col><ReactPlayer controls url='https://firebasestorage.googleapis.com/v0/b/react-firebase-chat-app-3b8de.appspot.com/o/video%2FTrafic%20-%2053902.mp4?alt=media&token=94e563a2-f3ba-4aad-b91f-61d14c2c2a63' /></Col>
+                    <Col><div style={{
+                        width: '90%',
+                        height: '350px',
+                        border: 'solid #bfbbbb',
+                        borderRadius: '20px',
+                        padding: '1rem',
+                        marginBottom: '1rem',
+                        overflowY: 'auto',
+                        marginTop: '0.8rem'
+                    }}>
+                        {this.renderMessageSkeleton(messageLoading)}
+                        {searchTerm
+                            ? this.renderMessages(searchResults)
+                            : this.renderMessages(messages)}
+                        {this.renderTypingUsers(typingUsers)}
+                        <div ref={node => (this.messagesEnd = node)} />
+                    </div>
+                    </Col>
+                </Row>
+                    <MessageForm />
                 </div>
-
-                <MessageForm />
-            </div>
-        )
+            )
+        }
     }
-}
-
 
 const mapStateToProps = state => {
     return {

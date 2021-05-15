@@ -81,11 +81,12 @@ export class Favorited extends Component {
         const { favoritedChatRooms } = this.state;
         return (
             <div>
-                <span style={{ display: 'flex', alignItems: 'center' }}>
-                    <FaRegSmileBeam style={{ marginRight: '3px' }} />
-                FAVORITED ({favoritedChatRooms.length})
+                <span style={{ display: 'flex', alignItems: 'center', fontSize: "0.8rem", marginLeft: 3}}>
+                    <FaRegSmileBeam style={{ marginRight: 3, fontSize: "0.8rem" }} />
+                FAVORITES ({favoritedChatRooms.length})
+                
             </span>
-                <ul style={{ listStyleType: 'none', padding: '0' }}>
+                <ul style={{ listStyleType: 'none', padding: '0', marginLeft: 4, fontSize: "0.8rem" }}>
                     {this.renderFavoritedChatRooms(favoritedChatRooms)}
                 </ul>
             </div>

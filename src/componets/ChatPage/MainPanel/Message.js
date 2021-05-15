@@ -28,20 +28,18 @@ function Message({ message, user }) {
 
     return (
 
-
-
         <Media style={{ marginBottom: '3px' }}>
             <img
                 style={{ borderRadius: '10px' }}
-                width={48}
-                height={48}
+                width={20}
+                height={20}
                 className="mr-3"
                 src={message.user.image}
                 alt={message.user.name}
             />
 
             <Media.Body style={{
-                backgroundColor: isMessageMine(message, user) && "#ECECEC"
+                backgroundColor: isMessageMine(message, user) && "#ECECEC" || "#0ff1ce"
             }}>
 
                 <h6>{message.user.name}{" "}

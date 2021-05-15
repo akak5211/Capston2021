@@ -81,8 +81,8 @@ function MessageHeader({ handleSearchChange }) {
                 <Media key={i}>
                     <img
                         style={{ borderRadius: '25px' }}
-                        width={48}
-                        height={48}
+                        width={20}
+                        height={20}
                         className="mr-3"
                         src={val.image}
                         alt={val.name}
@@ -96,106 +96,110 @@ function MessageHeader({ handleSearchChange }) {
                 </Media>
             ))
 
-    return (
-        <div style={{
-            width: '100%',
-            height: '170px',
-            border: '.2rem solid #ececec',
-            borderRadius: '4px',
-            padding: '1rem',
-            marginBottom: '1rem'
-        }}>
-            <Container>
-                <Row >
-                    <Col>
-                        <h2>
-                            {
-                                isPrivateChatRoom ?
-                                    <FaLock style={{ marginBottom: '10px' }} />
-                                    :
-                                    <FaLockOpen style={{ marginBottom: '10px' }} />
-                            }
-                            {" "}
-                            {chatRoom && chatRoom.name}
-
-                            {!isPrivateChatRoom &&
-                                <span style={{ cursor: 'pointer' }} onClick={handleFavorite}>
+            return (
+                <div style={{
+                    width: '95%',
+                    height: '10%',
+                    border: '0.3rem solid #bfbbbb',
+                    borderRadius: '20px',
+                    padding: '0.5rem',
+                    marginBottom: '.5rem'
+                }}>
+                    <Container>
+                        <Row >
+                            <Col sm={4}>
+                                <h5>
                                     {
-                                        isFavorited ?
-                                            <MdFavorite style={{ borderBottom: '10px' }} />
+                                        isPrivateChatRoom ?
+                                            <FaLock style={{ marginBottom: '10px', fontSize:'.8rem', marginLeft: 6, marginTop: 3 }} />
                                             :
-                                            <MdFavoriteBorder style={{ borderBottom: '10px' }} />
+                                            <FaLockOpen style={{ marginBottom: '10px', fontSize:'1.2rem', marginLeft: 6, marginTop: 3  }} />
                                     }
-                                </span>
-                            }
-
-                        </h2>
-                    </Col>
-                    <Col>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Prepend>
-                                <InputGroup.Text id="basic-addon1">
-                                    <AiOutlineSearch />
-                                </InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <FormControl
-                                onChange={handleSearchChange}
-                                placeholder="Search Messages"
-                                aria-label="Search"
-                                aria-describedby="basic-addon1"
-                            />
-                        </InputGroup>
-                    </Col>
-                </Row>
-
-                {!isPrivateChatRoom &&
-                    <div style={{ display: 'flex', justifyContent: 'flex-end' }} >
-                        <p>
-                            <Image style={{ width: '30px', height: '30px' }}
-                                src={chatRoom && chatRoom.createdBy.image} roundedCircle />{" "}
-                            {chatRoom && chatRoom.createdBy.name}
-                        </p>
-                    </div>
-                }
-
-                <Row >
-                    <Col>
-                        <Accordion >
-                            <Card>
-                                <Card.Header style={{ padding: '0 1rem' }}>
-                                    <Accordion.Toggle as={Button} variant="link" style={{ color: 'black', textDecoration: 'none' }} eventKey="0">
-                                        Description
-                                    </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0">
-                                    <Card.Body> {chatRoom && chatRoom.description}</Card.Body>
-                                </Accordion.Collapse>
-                            </Card>
-                        </Accordion>
-                    </Col>
-
-                    <Col>
-                        <Accordion >
-                            <Card>
-                                <Card.Header style={{ padding: '0 1rem' }}>
-                                    <Accordion.Toggle as={Button} style={{ color: 'black', textDecoration: 'none' }} variant="link" eventKey="0">
-                                        Posts Count
-                                    </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0">
-                                    <Card.Body>
-                                        {userPosts && renderUserPosts(userPosts)}
-                                    </Card.Body>
-                                </Accordion.Collapse>
-                            </Card>
-                        </Accordion>
-                    </Col>
-
-
-                </Row>
-            </Container>
-        </div>
-    )
+                                    {" "}
+                                    
+                                    {chatRoom && chatRoom.name}
+                                    
+        
+                                    {!isPrivateChatRoom &&
+                                        <span style={{ cursor: 'pointer', fontSize:'1.5rem', marginLeft: 3}} onClick={handleFavorite}>
+                                            {
+                                                isFavorited ?
+                                                    <MdFavorite style={{ borderBottom: '10px', fontSize:'1.5rem', marginBottom: 3 }} />
+                                                    :
+                                                    <MdFavoriteBorder style={{ borderBottom: '10px', fontSize:'1.5rem', marginBottom: 3 }} />
+                                            }
+                                        </span>
+                                    }
+        
+                                </h5>
+                            </Col>
+                            <Col>
+                                <InputGroup className="mb-3">
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text id="basic-addon1">
+                                            <AiOutlineSearch />
+                                        </InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl
+                                        onChange={handleSearchChange}
+                                        placeholder="Search Messages"
+                                        aria-label="Search"
+                                        aria-describedby="basic-addon1"
+                                    />
+                                </InputGroup>
+                            </Col>
+                        </Row>
+        
+                        <Row >
+                            <Col xs={8} md={5}>
+                                <Accordion >
+                                    <Card>
+                                        <Card.Header style={{ padding: '0 1rem' }}>
+                                            <Accordion.Toggle as={Button} variant="link" style={{ color: 'black', textDecoration: 'none' }} eventKey="0">
+                                                Description
+                                            </Accordion.Toggle>
+                                        </Card.Header>
+                                        <Accordion.Collapse eventKey="0">
+                                            <Card.Body> {chatRoom && chatRoom.description}</Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                </Accordion>
+                            </Col>
+        
+                            <Col xs={8} md={5}>
+                                <Accordion >
+                                    <Card>
+                                        <Card.Header style={{ padding: '0 1rem' }}>
+                                            <Accordion.Toggle as={Button} style={{ color: 'black', textDecoration: 'none' }} variant="link" eventKey="0">
+                                                Posts Count
+                                            </Accordion.Toggle>
+                                        </Card.Header>
+                                        <Accordion.Collapse eventKey="0">
+                                            <Card.Body>
+                                                {userPosts && renderUserPosts(userPosts)}
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                </Accordion>
+                            </Col>
+        
+                            <Col xs={2} md={2}>
+                            {!isPrivateChatRoom &&
+                            <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize:'0.8rem' }} >
+                                <p>
+                                    <Image style={{ width: '20px', height: '20px', marginTop: 5 }}
+                                        src={chatRoom && chatRoom.createdBy.image} roundedCircle />{" "}
+                                    {chatRoom && chatRoom.createdBy.name}
+                                </p>
+                            </div>
+                        }
+                            </Col>
+        
+        
+                        </Row>
+                    </Container>
+                </div>
+            )
 }
 
 export default MessageHeader

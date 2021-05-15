@@ -8,7 +8,6 @@ import mime from 'mime-types';
 import { setPhotoURL } from '../../../redux/actions/user_action';
 
 
-
 function UserPanel() {
     const user = useSelector(state => state.user.currentUser)
     const dispatch = useDispatch();
@@ -58,18 +57,18 @@ function UserPanel() {
     return (
         <div>
             {/* Logo */}
-            <h3 style={{ color: 'white' }}>
+            <h3 style={{ color: 'white', fontSize: "1rem", marginLeft: 7, marginTop:2 }}>
                 <IoIosChatboxes />{" "} Chat App
             </h3>
 
             <div style={{ display: 'flex', marginBottom: '1rem' }}>
                 <Image src={user && user.photoURL}
-                    style={{ width: '30p', height: '30px', marginTop: '3px' }}
+                    style={{ width: '20px', height: '20px', marginTop: '3px',marginLeft: 5 }}
                     roundedCircle />
 
                 <Dropdown>
                     <Dropdown.Toggle
-                        style={{ background: 'transparent', boder: '0px' }}
+                        style={{ background: 'transparent', boder: '0px', fontSize:'0.8rem' }}
                         id="dropdown-basic">
                         {user && user.displayName}
                     </Dropdown.Toggle>
