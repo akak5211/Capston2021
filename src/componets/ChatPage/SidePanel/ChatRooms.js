@@ -8,7 +8,7 @@ import {
     setCurrentChatRoom, setPrivateChatRoom,
 } from '../../../redux/actions/chatRoom_action';
 import { connect } from 'react-redux';
-import { FaPlus } from 'react-icons/fa';
+import { FaDAndD, FaPlus } from 'react-icons/fa';
 import { FaRegSmileWink } from 'react-icons/fa';
 
 export class ChatRooms extends Component {
@@ -19,6 +19,7 @@ export class ChatRooms extends Component {
         show: false,
         name: "",
         description: "",
+        video: "",
         chatRooms: [],
         activeChatRoomId: "",
         firstLoad: true,
@@ -129,9 +130,9 @@ export class ChatRooms extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { name, description } = this.state;
+        const { name, description, video } = this.state;
 
-        if (this.isFormValid(name, description)) {
+        if (this.isFormValid(name, description, video)) {
             this.addChatRoom();
         }
     }
