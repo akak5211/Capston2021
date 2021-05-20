@@ -24,7 +24,10 @@ export class MainPanel extends Component {
         typingRef: firebase.database().ref("typing"),
         typingUsers: [],
         listenerLists: [],
-        connectedRef: firebase.database().ref(".info/connected")
+        connectedRef: firebase.database().ref(".info/connected"),
+        currentChatRoomId: "",
+        chatRoomRef: firebase.database().ref("chatRooms"),
+        videoURL: ""
     }
 
     componentDidMount() {
@@ -32,6 +35,8 @@ export class MainPanel extends Component {
         if (chatRoom) {
             this.addMessagesListeners(chatRoom.id);
             this.addTypingListeners(chatRoom.id);
+            this.addVideoURL(chatRoom.id);
+            this.addCurrentChatroomId(chatRoom.id);
         }
     }
 
@@ -125,6 +130,24 @@ export class MainPanel extends Component {
         });
     }
 
+    addCurrentChatroomId = (chatRoomId) => {
+        this.setState({ currentChatRoomId: chatRoomId });
+    }
+
+    addVideoURL = (chatRoomId) => {
+        this.state.chatRoomRef.child(chatRoomId).child("createdBy").child("video").get().then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+                this.setState({ videoURL: snapshot.val() });
+            }
+            else {
+                console.log("No data");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
+
     userPostsCount = messages => {
         let userPosts = messages.reduce((acc, message) => {
             if (message.user.name in acc) {
@@ -160,7 +183,7 @@ export class MainPanel extends Component {
                 message.user.name.match(regex)
             ) {
                 acc.push(message);
-                
+
             }
             return acc;
         }, []);
@@ -194,24 +217,31 @@ export class MainPanel extends Component {
             </>
         )
 
-        render() {
-            const { messages, searchTerm, searchResults, typingUsers, messageLoading } = this.state;
-    
-            return (
-                
-                <div style={{ padding: '0.8rem 0.8rem 0 1rem', fontSize:'.5rem'}}>
-                    
-                    <MessageHeader
-                        messages={messages}
-                        handleSearchChange={this.handleSearchChange}
-                    />
-    
+    render() {
+        const { messages, searchTerm, searchResults, typingUsers, messageLoading, currentChatRoomId, videoURL } = this.state;
+        console.log("ChatRoomId", currentChatRoomId);
+        console.log("VideoURL", videoURL);
+        const URL = videoURL.substring(5);
+        const URLsplit = URL.split("/");
+        const projectid = URLsplit[0];
+        const foldername = URLsplit[1];
+        const foldername2 = URLsplit[2];
+        const foldername3 = URLsplit[3];
+        const filename = URLsplit[4];
+        const url = "https://firebasestorage.googleapis.com/v0/b/" + [projectid] + "/o/" + [foldername] + "%2F" + [foldername2] + "%2F" + [foldername3] + "%2F" + [filename] + "?alt=media";
+        console.log("Complete URL", url);
+        return (
+            <div style={{ padding: '0.8rem 0.8rem 0 1rem', fontSize: '.5rem' }}>
+                <MessageHeader
+                    messages={messages}
+                    handleSearchChange={this.handleSearchChange}
+                />
                 <Row>
-                    <Col><ReactPlayer controls url='https://firebasestorage.googleapis.com/v0/b/react-firebase-chat-app-3b8de.appspot.com/o/video%2FTrafic%20-%2053902.mp4?alt=media&token=94e563a2-f3ba-4aad-b91f-61d14c2c2a63' /></Col>
+                    <Col><ReactPlayer controls url = {url} /></Col>
                     <Col><div style={{
                         width: '90%',
                         height: '350px',
-                        border: 'solid #bfbbbb',
+                        border: 'solid #BFBBBB',
                         borderRadius: '20px',
                         padding: '1rem',
                         marginBottom: '1rem',
@@ -227,11 +257,11 @@ export class MainPanel extends Component {
                     </div>
                     </Col>
                 </Row>
-                    <MessageForm />
-                </div>
-            )
-        }
+                <MessageForm />
+            </div>
+        )
     }
+}
 
 const mapStateToProps = state => {
     return {
@@ -241,4 +271,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(MainPanel);
-

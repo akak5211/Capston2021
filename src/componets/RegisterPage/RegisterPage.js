@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import firebase from '../../firebase';
 import md5 from 'md5';
 
+
 function RegisterPage() {
 
     const { register, watch, errors, handleSubmit } = useForm();
@@ -32,7 +33,7 @@ function RegisterPage() {
             await firebase.database().ref("users").child(createdUser.user.uid).set({
                 name: createdUser.user.displayName,
                 image: createdUser.user.photoURL,
-                email: createdUser.user.displayEmail
+                email: createdUser.user.email
             })
 
             setLoading(false)

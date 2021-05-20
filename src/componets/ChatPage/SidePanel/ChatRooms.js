@@ -19,7 +19,6 @@ export class ChatRooms extends Component {
         show: false,
         name: "",
         description: "",
-        video: "",
         chatRooms: [],
         activeChatRoomId: "",
         firstLoad: true,
@@ -130,9 +129,9 @@ export class ChatRooms extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { name, description, video } = this.state;
+        const { name, description } = this.state;
 
-        if (this.isFormValid(name, description, video)) {
+        if (this.isFormValid(name, description)) {
             this.addChatRoom();
         }
     }
@@ -148,7 +147,8 @@ export class ChatRooms extends Component {
             description: description,
             createdBy: {
                 name: user.displayName,
-                image: user.photoURL
+                image: user.photoURL,
+                video: " "
             }
         };
 
@@ -216,11 +216,10 @@ export class ChatRooms extends Component {
             <>
 
                 <div style={{
-                    position: 'relative',
-                    display: 'flex', alignItems: 'center',
-                    fontSize: '0.8rem', marginLeft: 3
+                    position: 'relative', width: '100%',
+                    display: 'flex', alignItems: 'center'
                 }}>
-                    <FaRegSmileWink style={{ marginRight: 3 , fontSize: '0.8rem'}} />
+                    <FaRegSmileWink style={{ marginRight: 3 }} />
                     CHAT ROOMS{" "} ({chatRooms.length})
 
                         <FaPlus
@@ -232,7 +231,7 @@ export class ChatRooms extends Component {
                     />
                 </div>
 
-                <ul style={{ listStyleType: 'none', padding: '0', fontSize:'.8rem', marginTop:4, marginLeft:4 }}>
+                <ul style={{ listStyleType: 'none', padding: '0' }}>
                     {this.renderChatrooms(chatRooms)}
                 </ul>
 

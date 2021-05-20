@@ -7,6 +7,7 @@ import "firebase/storage";
   var firebaseConfig = {
     apiKey: "AIzaSyAHNdP1T-NlsIqyUDodYUcZnt8HZMUdj80",
     authDomain: "project-6629124072636312930.firebaseapp.com",
+    databaseURL: "https://project-6629124072636312930-default-rtdb.firebaseio.com",
     projectId: "project-6629124072636312930",
     storageBucket: "project-6629124072636312930.appspot.com",
     messagingSenderId: "560218264203",

@@ -1,19 +1,6 @@
 {
-  "hosting": {
-    "public" : "./build",
-
-    "rewrites": [
-
-      {
-
-        "source": "**",
-
-        "destination": "/index.html"
-
-      }
-
-   ]
-
+  "hosting":{
+    "public": "./build"
   },
   "database": {
     "rules": "database.rules.json"
