@@ -26,6 +26,8 @@ function Message({ message, user }) {
         }
     }
 
+    const hashtag = "https://search.shopping.naver.com/search/all?query=";
+
     return (
 
         <Media style={{ marginBottom: '3px' }}>
@@ -39,10 +41,14 @@ function Message({ message, user }) {
             />
 
             <Media.Body style={{
-                backgroundColor: isMessageMine(message, user) && "#ECECEC" || "#0ff1ce"
+               // backgroundColor: isMessageMine(message, user) && "#ECECEC" || "#0ff1ce"
+
+                
+                
             }}>
 
-                <h6>{message.user.name}{" "}
+                <h6>
+                    {message.user.name}{" "}
                     <span style={{ fontSize: '10px', color: 'gray' }}>
                         {timeFromNow(message.timestamp)}
                     </span>
@@ -52,14 +58,13 @@ function Message({ message, user }) {
                     :
                     hashtest(message) ?
                         <p>
-                            <a href="https://www.naver.com/">{message.content}</a>
+                            <a style= {{backgroundColor:'#bbff00'}} href={hashtag+message.content.substring(1)}>{message.content}</a>
 
                         </p> :
 
                         <p>
-
-
-                            {message.content}
+                            <a style = {{backgroundColor: 'red'}} > {message.content}</a>
+                           
 
                         </p>
 
