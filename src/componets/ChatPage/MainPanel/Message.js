@@ -39,7 +39,8 @@ function Message({ message, user }) {
             />
 
             <Media.Body style={{
-                backgroundColor: isMessageMine(message, user) && "#ECECEC" || "#0ff1ce"
+                // backgroundColor: isMessageMine(message, user) && "#ECECEC" || "#0ff1ce",
+                
             }}>
 
                 <h6>{message.user.name}{" "}
@@ -52,17 +53,30 @@ function Message({ message, user }) {
                     :
                     hashtest(message) ?
                         <p>
-                            <a href="https://www.naver.com/">{message.content}</a>
+                            <a style = {{ backgroundColor:'red'
+                            }} href="https://www.naver.com/">{message.content}</a>
 
                         </p> :
 
+                        // <p style={{
+                        //     backgroundColor: 'red'
+                        // }}>
+
+
+                        //     {message.content}
+
+                        // </p>
                         <p>
+                        <a style={{
+                            backgroundColor: 'red',
+                            fontSize: '20px'
+                        }}>
 
 
                             {message.content}
 
+                        </a>
                         </p>
-
 
                 }
 
