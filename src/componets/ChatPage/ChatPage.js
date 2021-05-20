@@ -2,6 +2,7 @@ import React from 'react'
 import SidePanel from './SidePanel/SidePanel';
 import MainPanel from './MainPanel/MainPanel';
 import { useSelector } from 'react-redux';
+import Navbar from './SidePanel/Navbar';
 
 
 
@@ -12,8 +13,8 @@ function ChatPage() {
 
         <div style={{ display: 'flex' }}>
 
-            <div style={{ width: '13%' }}>
-                <SidePanel
+            <div style={{ width: '50px' }}>
+                <Navbar
                     key={currentUser && currentUser.uid}
                 />
             </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import UserPanel from './UserPanel';
 import Favorited from './Favorited';
 import ChatRooms from './ChatRooms';
@@ -26,4 +26,4 @@ function SidePanel() {
     )
 }
 
-export default SidePanel
+export default SidePanel */
