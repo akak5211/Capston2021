@@ -20,72 +20,150 @@ function Message({ message, user }) {
             return message.user.id === user.uid
         }
     }
-    // const MessagePrint = (message, user) => {
-    //     if (user) {
-    //         return message.content
-    //     }
     const hashtag = "https://search.shopping.naver.com/search/all?query=";
     return (
-        // <Media style={{ marginBottom: '3px' }}> 
-        <Media style={{backgroundColor:"#9BBBD4"}}>
-            <img
-                style={{
-                    borderRadius: '10px',
-                    marginTop:'3px',
-                    marginLeft:'7px',
-                }}
-                width={20}
-                height={20}
-                className="mr-3"
-                src={message.user.image}
-                alt={message.user.name}
-            />
+        <Media style={{ backgroundColor: "#9BBBD4" }}>
+            {isMessageMine(message, user) ?
+                <img
+                    width={0}
+                    height={0}
+                />
+                : <img
+                    style={{
+                        borderRadius: '10px',
+                        marginTop: '3px',
+                        marginLeft: '7px'
+                    }}
+                    width={30}
+                    height={30}
+                    className="mr-3"
+                    src={message.user.image}
+                    alt={message.user.name}
+                />
+            }
             <Media.Body style={{
                 backgroundColor: '#9BBBD4'
-                // backgroundColor: isMessageMine(message, user) && "#ECECEC" || "#0FF1CE"
             }}>
-                <p>
-                    <a style ={{
-                        fontSize: '15px',
-                        fontWeight: 'bolder'
-                    }}>
-                    {message.user.name}{" "}
-                    </a>
-                    <span style={{
-                        fontSize: '10px',
-                        color: '#000000',
-                        fontWeight: 'bolder'}}>
-                        {timeFromNow(message.timestamp)}
-                    </span>
-                </p>
+                {isMessageMine(message, user) ?
+                    <p>
+                        <a style={{
+                            fontSize: '0px'
+                        }}>
+                        </a>
+                    </p>
+                    :
+                    <p>
+                        <a style={{
+                            fontSize: '15px',
+                            fontWeight: 'bolder',
+                        }}>
+                            {message.user.name}
+                        </a>
+                    </p>
+                }
                 {isImage(message) ?
-                    <img style={{ maxWidth: '300px' }} alt="이미지" src={message.image} />
+                <p>
+                    {isMessageMine(message, user) ?
+                                <span style={{
+                                    fontSize: '10px',
+                                    color: 'black',
+                                    float: 'left',
+                                    marginTop: '32%',
+                                    marginLeft: '34%'
+                                }}>
+                                    {timeFromNow(message.timestamp)}
+                                </span>
+                                :
+                                <span style={{
+                                    fontSize: '10px',
+                                    color: 'gray',
+                                    float: 'right',
+                                    marginTop: '35%',
+                                    marginRight: '25%'
+                                }}>
+                                    {timeFromNow(message.timestamp)}
+                                </span>
+                            }
+                    <img style={{
+                        width: '300px',
+                        height: '200px',
+                        marginBottom: '15px',
+                        float: isMessageMine(message, user) && 'right' || 'left'
+                    }} alt="이미지" src={message.image} />
+                </p>
                     :
                     hashtest(message) ?
-                    //링크 색
-                        <p> 
-                            <a style = {{
-                                backgroundColor:'#FFFFFF',
-                                borderRadius:'5px',
+                        //링크 색
+                        <p>
+                            <a style={{
+                                backgroundColor: isMessageMine(message, user) && '#FEF01B' || '#FFFFFF',
+                                borderRadius: '5px',
+                                marginBottom: '15px',
                                 fontSize: '15px',
                                 fontWeight: 'bolder',
-                            }} href={hashtag+message.content.substring(1)}>{message.content}</a>
+                                margin: '-10px 10px 10px 0',
+                                padding: '10px 10px 10px 10px',
+                                float: isMessageMine(message, user) && 'right' || 'left'
+                            }} href={hashtag + message.content.substring(1)}>{message.content}</a>
+                            {isMessageMine(message, user) ?
+                                <span style={{
+                                    fontSize: '10px',
+                                    color: 'black',
+                                    float: 'right',
+                                    marginTop: '6%',
+                                    marginRight: '1%'
+                                }}>
+                                    {timeFromNow(message.timestamp)}
+                                </span>
+                                :
+                                <span style={{
+                                    fontSize: '10px',
+                                    color: 'gray',
+                                    float: 'left',
+                                    marginTop: '3%',
+                                    marginLeft: '-1%'
+                                }}>
+                                    {timeFromNow(message.timestamp)}
+                                </span>
+                            }
                         </p> :
                         //내 채팅, 상대채팅 색 변경
                         <p>
-                        <a style={{
-                            // backgroundColor: '#FEF01B',
-                            fontSize: '20px',
-                            backgroundColor: isMessageMine(message, user) && "#FEF01B" || "#FFFFFF",
-                            borderRadius:'8px',
-                            float: isMessageMine(message, user) && 'right' || 'left'
-                        }}>
-                            {message.content}
-                        </a>
+                            <a style={{
+                                fontSize: '20px',
+                                backgroundColor: isMessageMine(message, user) && "#FEF01B" || "#FFFFFF",
+                                borderRadius: '8px',
+                                float: isMessageMine(message, user) && 'right' || 'left',
+                                margin: '0 10px 10px 0',
+                                padding: '10px 10px 10px 10px'
+                            }}>
+                                {message.content}
+                            </a>
+                            {isMessageMine(message, user) ?
+                                <span style={{
+                                    fontSize: '10px',
+                                    color: 'black',
+                                    float: 'right',
+                                    marginTop: '6%',
+                                    marginRight: '1%'
+                                }}>
+                                    {timeFromNow(message.timestamp)}
+                                </span>
+                                :
+                                <span style={{
+                                    fontSize: '10px',
+                                    color: 'gray',
+                                    float: 'left',
+                                    marginTop: '6%',
+                                    marginLeft: '-1%'
+                                }}>
+                                    {timeFromNow(message.timestamp)}
+                                </span>
+                            }
                         </p>
-                    }
+                }
             </Media.Body>
         </Media>
     )
-            }
+}
 export default Message

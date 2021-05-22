@@ -16,6 +16,7 @@ import {
   setUser,
   clearUser
 } from './redux/actions/user_action';
+import { render } from '@testing-library/react';
 
 
 function App(props) {
@@ -23,21 +24,26 @@ function App(props) {
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.user.isLoading);
 
+
+
+
   useEffect(() => {
+
 
     firebase.auth().onAuthStateChanged(user => {
       console.log('user', user)
       //로그인이 된 상태
-       if (user) {
-        history.push("/");
-        dispatch(setUser(user))
+      if (user) {
         
+        dispatch(setUser(user))
       }
 
       else {
         history.push("/login");
         dispatch(clearUser())
       }
+
+
     })
   }, [])
 
@@ -51,7 +57,7 @@ function App(props) {
   return (
 
     <Switch>
-      <Route exact path="/" component={ChatPage} />
+      <Route exact path="/sub" component={ChatPage} />
       <Route exact path="/main" component={VideoPage} />
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register" component={RegisterPage} />

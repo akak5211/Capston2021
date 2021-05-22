@@ -2,19 +2,43 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import firebase from '../../firebase';
+import { render } from '@testing-library/react';
+import {
+    Switch,
+    Route,
+    useHistory,
+  
+  } from "react-router-dom";
+  import {useSelector } from 'react-redux';
+
 
 function LoginPage() {
-
+    let history = useHistory();
     const { register, errors, handleSubmit } = useForm();
     const [errorFromSubmit, setErrorFromSubmit] = useState("")
     const [loading, setLoading] = useState(false);
+    const isLoading = useSelector(state => state.user.isLoading);
 
     const onSubmit = async (data) => {
 
         try {
             setLoading(true)
+        firebase.auth().onAuthStateChanged(user => {
+           if(user){
+               history.push("/sub")
+           }
+           
 
+        })
+        
             await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
+            if (isLoading) {
+                return (
+                  <div>
+                    ...loading
+                  </div>
+                )
+              }
 
             setLoading(false)
         } catch (error) {
@@ -25,10 +49,14 @@ function LoginPage() {
             }, 5000);
         }
 
+        
 
     }
+    
 
     return (
+        
+        
         <div className="auth-wrapper">
             <div style={{ textAlign: 'center' }}>
                 <h3>Login</h3>
