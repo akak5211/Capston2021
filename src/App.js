@@ -31,7 +31,7 @@ function App(props) {
        if (user) {
         history.push("/");
         dispatch(setUser(user))
-        dispatch(clearUser())
+        
       }
 
       else {
