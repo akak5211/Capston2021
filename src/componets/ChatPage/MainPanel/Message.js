@@ -62,12 +62,20 @@ function Message({ message, user }) {
 
                         </p> :
 
+                        // <p style={{
+                        //     backgroundColor: 'red'
+                        // }}>
+
+
+                        //     {message.content}
+
+                        // </p>
                         <p>
                             <a style = {{backgroundColor: 'red'}} > {message.content}</a>
                            
 
+                    
                         </p>
-
 
                 }
 
