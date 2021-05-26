@@ -2,7 +2,15 @@
   "database": {
     "rules": "database.rules.json"
   },
-  "storage": {
-    "rules": "storage.rules"
+  "hosting": {
+    "public": "./build",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }],
+      "storage": {
+        "rules": "storage.rules"
+      }
+    }
   }
-}

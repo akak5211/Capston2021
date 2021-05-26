@@ -25,20 +25,14 @@ function LoginPage() {
             setLoading(true)
         firebase.auth().onAuthStateChanged(user => {
            if(user){
-               history.push("/sub")
+               history.push("/main")
            }
            
 
         })
         
             await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
-            if (isLoading) {
-                return (
-                  <div>
-                    ...loading
-                  </div>
-                )
-              }
+          
 
             setLoading(false)
         } catch (error) {
